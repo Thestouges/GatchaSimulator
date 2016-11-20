@@ -36,8 +36,13 @@
             this.unitNameTxtBox = new System.Windows.Forms.TextBox();
             this.addUnitBtn = new System.Windows.Forms.Button();
             this.delUnitBtn = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.displayInfoTextBox = new System.Windows.Forms.TextBox();
+            this.unitInfoTextBox = new System.Windows.Forms.TextBox();
+            this.rollBtn = new System.Windows.Forms.Button();
+            this.rollListBox = new System.Windows.Forms.ListBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // unitListBox
@@ -47,15 +52,16 @@
             this.unitListBox.Name = "unitListBox";
             this.unitListBox.Size = new System.Drawing.Size(120, 199);
             this.unitListBox.TabIndex = 0;
+            this.unitListBox.SelectedIndexChanged += new System.EventHandler(this.unitListBox_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Available Units";
+            this.label1.Text = "Available Items";
             // 
             // rarityComboBox
             // 
@@ -103,7 +109,7 @@
             this.addUnitBtn.Name = "addUnitBtn";
             this.addUnitBtn.Size = new System.Drawing.Size(58, 23);
             this.addUnitBtn.TabIndex = 6;
-            this.addUnitBtn.Text = "Add Unit";
+            this.addUnitBtn.Text = "Add Item";
             this.addUnitBtn.UseVisualStyleBackColor = true;
             this.addUnitBtn.Click += new System.EventHandler(this.addUnitBtn_Click);
             // 
@@ -113,35 +119,89 @@
             this.delUnitBtn.Name = "delUnitBtn";
             this.delUnitBtn.Size = new System.Drawing.Size(58, 23);
             this.delUnitBtn.TabIndex = 7;
-            this.delUnitBtn.Text = "Del Unit";
+            this.delUnitBtn.Text = "Del Item";
             this.delUnitBtn.UseVisualStyleBackColor = true;
             this.delUnitBtn.Click += new System.EventHandler(this.delUnitBtn_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(138, 29);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(314, 199);
-            this.textBox2.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(138, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Unit Info";
+            this.label4.Text = "Item Info";
+            // 
+            // displayInfoTextBox
+            // 
+            this.displayInfoTextBox.Location = new System.Drawing.Point(138, 29);
+            this.displayInfoTextBox.Multiline = true;
+            this.displayInfoTextBox.Name = "displayInfoTextBox";
+            this.displayInfoTextBox.ReadOnly = true;
+            this.displayInfoTextBox.Size = new System.Drawing.Size(314, 199);
+            this.displayInfoTextBox.TabIndex = 8;
+            // 
+            // unitInfoTextBox
+            // 
+            this.unitInfoTextBox.Location = new System.Drawing.Point(138, 233);
+            this.unitInfoTextBox.Multiline = true;
+            this.unitInfoTextBox.Name = "unitInfoTextBox";
+            this.unitInfoTextBox.Size = new System.Drawing.Size(134, 48);
+            this.unitInfoTextBox.TabIndex = 10;
+            // 
+            // rollBtn
+            // 
+            this.rollBtn.Location = new System.Drawing.Point(278, 287);
+            this.rollBtn.Name = "rollBtn";
+            this.rollBtn.Size = new System.Drawing.Size(88, 23);
+            this.rollBtn.TabIndex = 11;
+            this.rollBtn.Text = "Roll";
+            this.rollBtn.UseVisualStyleBackColor = true;
+            this.rollBtn.Click += new System.EventHandler(this.rollBtn_Click);
+            // 
+            // rollListBox
+            // 
+            this.rollListBox.FormattingEnabled = true;
+            this.rollListBox.Location = new System.Drawing.Point(372, 235);
+            this.rollListBox.Name = "rollListBox";
+            this.rollListBox.Size = new System.Drawing.Size(80, 69);
+            this.rollListBox.TabIndex = 12;
+            this.rollListBox.SelectedIndexChanged += new System.EventHandler(this.rollListBox_SelectedIndexChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(279, 233);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(79, 17);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Normal Roll";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(279, 256);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(83, 17);
+            this.radioButton2.TabIndex = 14;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Roll and Del";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 322);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rollListBox);
+            this.Controls.Add(this.rollBtn);
+            this.Controls.Add(this.unitInfoTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.displayInfoTextBox);
             this.Controls.Add(this.delUnitBtn);
             this.Controls.Add(this.addUnitBtn);
             this.Controls.Add(this.unitNameTxtBox);
@@ -150,6 +210,7 @@
             this.Controls.Add(this.rarityComboBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.unitListBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Gatcha Simulator";
             this.ResumeLayout(false);
@@ -167,8 +228,13 @@
         private System.Windows.Forms.TextBox unitNameTxtBox;
         private System.Windows.Forms.Button addUnitBtn;
         private System.Windows.Forms.Button delUnitBtn;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox displayInfoTextBox;
+        private System.Windows.Forms.TextBox unitInfoTextBox;
+        private System.Windows.Forms.Button rollBtn;
+        private System.Windows.Forms.ListBox rollListBox;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
 
