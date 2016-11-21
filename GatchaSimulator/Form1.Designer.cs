@@ -41,8 +41,10 @@
             this.unitInfoTextBox = new System.Windows.Forms.TextBox();
             this.rollBtn = new System.Windows.Forms.Button();
             this.rollListBox = new System.Windows.Forms.ListBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rollDelRadioBtn = new System.Windows.Forms.RadioButton();
+            this.rollNormRadioBtn = new System.Windows.Forms.RadioButton();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // unitListBox
@@ -162,41 +164,51 @@
             // rollListBox
             // 
             this.rollListBox.FormattingEnabled = true;
-            this.rollListBox.Location = new System.Drawing.Point(372, 235);
+            this.rollListBox.Location = new System.Drawing.Point(372, 237);
             this.rollListBox.Name = "rollListBox";
             this.rollListBox.Size = new System.Drawing.Size(80, 69);
             this.rollListBox.TabIndex = 12;
             this.rollListBox.SelectedIndexChanged += new System.EventHandler(this.rollListBox_SelectedIndexChanged);
             // 
-            // radioButton1
+            // groupBox1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(279, 233);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(79, 17);
-            this.radioButton1.TabIndex = 13;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Normal Roll";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.rollDelRadioBtn);
+            this.groupBox1.Controls.Add(this.rollNormRadioBtn);
+            this.groupBox1.Location = new System.Drawing.Point(278, 225);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(88, 56);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
             // 
-            // radioButton2
+            // rollDelRadioBtn
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(279, 256);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(83, 17);
-            this.radioButton2.TabIndex = 14;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Roll and Del";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rollDelRadioBtn.AutoSize = true;
+            this.rollDelRadioBtn.Location = new System.Drawing.Point(3, 34);
+            this.rollDelRadioBtn.Name = "rollDelRadioBtn";
+            this.rollDelRadioBtn.Size = new System.Drawing.Size(83, 17);
+            this.rollDelRadioBtn.TabIndex = 16;
+            this.rollDelRadioBtn.TabStop = true;
+            this.rollDelRadioBtn.Text = "Roll and Del";
+            this.rollDelRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // rollNormRadioBtn
+            // 
+            this.rollNormRadioBtn.AutoSize = true;
+            this.rollNormRadioBtn.Checked = true;
+            this.rollNormRadioBtn.Location = new System.Drawing.Point(3, 11);
+            this.rollNormRadioBtn.Name = "rollNormRadioBtn";
+            this.rollNormRadioBtn.Size = new System.Drawing.Size(79, 17);
+            this.rollNormRadioBtn.TabIndex = 15;
+            this.rollNormRadioBtn.TabStop = true;
+            this.rollNormRadioBtn.Text = "Normal Roll";
+            this.rollNormRadioBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 322);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rollListBox);
             this.Controls.Add(this.rollBtn);
             this.Controls.Add(this.unitInfoTextBox);
@@ -213,6 +225,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Gatcha Simulator";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,8 +247,9 @@
         private System.Windows.Forms.TextBox unitInfoTextBox;
         private System.Windows.Forms.Button rollBtn;
         private System.Windows.Forms.ListBox rollListBox;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rollDelRadioBtn;
+        private System.Windows.Forms.RadioButton rollNormRadioBtn;
     }
 }
 

@@ -123,7 +123,9 @@ namespace GatchaSimulator
                 }
             }
 
-            string query = "Select * From unitTable Where Id = " + idArr[rnd.Next(idArr.Length)];
+            int num = rnd.Next(idArr.Length);
+
+            string query = "Select * From unitTable Where Id = " + idArr[num];
 
             using (connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
@@ -137,6 +139,20 @@ namespace GatchaSimulator
             }
 
             populateRollUnitInfo();
+
+            if (rollDelRadioBtn.Checked)
+            {
+                query = "Delete From unitTable Where Id = @Id";
+
+                using (connection = new SqlConnection(connectionString))
+                using (command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@Id", idArr[num]);
+                    command.ExecuteNonQuery();
+                }
+                populateUnitList();
+            }
         }
 
         private void rollListBox_SelectedIndexChanged(object sender, EventArgs e)
