@@ -44,6 +44,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rollDelRadioBtn = new System.Windows.Forms.RadioButton();
             this.rollNormRadioBtn = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.historyTxtBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,7 +143,7 @@
             this.displayInfoTextBox.Multiline = true;
             this.displayInfoTextBox.Name = "displayInfoTextBox";
             this.displayInfoTextBox.ReadOnly = true;
-            this.displayInfoTextBox.Size = new System.Drawing.Size(314, 199);
+            this.displayInfoTextBox.Size = new System.Drawing.Size(228, 199);
             this.displayInfoTextBox.TabIndex = 8;
             // 
             // unitInfoTextBox
@@ -203,11 +206,44 @@
             this.rollNormRadioBtn.Text = "Normal Roll";
             this.rollNormRadioBtn.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(369, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Roll History";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(373, 204);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(79, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Clear History";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // historyTxtBox
+            // 
+            this.historyTxtBox.BackColor = System.Drawing.SystemColors.Control;
+            this.historyTxtBox.Location = new System.Drawing.Point(372, 29);
+            this.historyTxtBox.Name = "historyTxtBox";
+            this.historyTxtBox.ReadOnly = true;
+            this.historyTxtBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.historyTxtBox.Size = new System.Drawing.Size(80, 169);
+            this.historyTxtBox.TabIndex = 19;
+            this.historyTxtBox.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 322);
+            this.Controls.Add(this.historyTxtBox);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rollListBox);
             this.Controls.Add(this.rollBtn);
@@ -250,6 +286,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rollDelRadioBtn;
         private System.Windows.Forms.RadioButton rollNormRadioBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox historyTxtBox;
     }
 }
 

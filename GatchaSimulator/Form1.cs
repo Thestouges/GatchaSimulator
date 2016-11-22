@@ -20,11 +20,13 @@ namespace GatchaSimulator
         SqlConnection connection;
         SqlDataReader reader;
         SqlCommand command;
+        string history;
 
         public Form1()
         {
             InitializeComponent();
             rnd = new Random();
+            history = "";
             connectionString = ConfigurationManager.ConnectionStrings["GatchaSimulator.Properties.Settings.unitDatabaseConnectionString"].ConnectionString;
             rarityComboBox.SelectedIndex = 0;
             populateUnitList();
@@ -136,6 +138,11 @@ namespace GatchaSimulator
                 rollListBox.DisplayMember = "Name";
                 rollListBox.ValueMember = "Id";
                 rollListBox.DataSource = unitTable;
+
+                foreach (DataRow row in unitTable.Rows)
+                {
+                    history = (row["Name"].ToString())+"\r\n"+history;
+                }
             }
 
             populateRollUnitInfo();
@@ -153,6 +160,8 @@ namespace GatchaSimulator
                 }
                 populateUnitList();
             }
+
+            historyTxtBox.Text = history;
         }
 
         private void rollListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,6 +184,12 @@ namespace GatchaSimulator
                 connection.Close();
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            history = "";
+            historyTxtBox.Text = "";
         }
     }
 }
