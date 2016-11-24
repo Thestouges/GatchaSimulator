@@ -89,16 +89,22 @@ namespace GatchaSimulator
         private void delUnitBtn_Click(object sender, EventArgs e)
         {
             string query = "Delete From unitTable Where Id = @Id";
-
-            using (connection = new SqlConnection(connectionString))
-            using (command = new SqlCommand(query, connection))
+            try
             {
-                connection.Open();
-                command.Parameters.AddWithValue("@Id", Convert.ToInt32((unitListBox.SelectedItem as DataRowView)["Id"]));
+                using (connection = new SqlConnection(connectionString))
+                using (command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@Id", Convert.ToInt32((unitListBox.SelectedItem as DataRowView)["Id"]));
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                populateUnitList();
             }
-            populateUnitList();
+            catch
+            {
+                MessageBox.Show("Nothing in database");
+            }
         }
 
         private void unitListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,59 +115,67 @@ namespace GatchaSimulator
         private void rollBtn_Click(object sender, EventArgs e)
         {
             int[] idArr;
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("Select * From unitTable", connection))
+
+            try
             {
-                DataTable unitTable = new DataTable();
-                adapter.Fill(unitTable);
-
-                idArr = new int[unitTable.Rows.Count];
-                int i = 0;
-
-                foreach (DataRow row in unitTable.Rows)
+                using (connection = new SqlConnection(connectionString))
+                using (SqlDataAdapter adapter = new SqlDataAdapter("Select * From unitTable", connection))
                 {
-                    idArr[i] = Convert.ToInt32(row["Id"].ToString());
-                    i++;
+                    DataTable unitTable = new DataTable();
+                    adapter.Fill(unitTable);
+
+                    idArr = new int[unitTable.Rows.Count];
+                    int i = 0;
+
+                    foreach (DataRow row in unitTable.Rows)
+                    {
+                        idArr[i] = Convert.ToInt32(row["Id"].ToString());
+                        i++;
+                    }
                 }
-            }
 
-            int num = rnd.Next(idArr.Length);
+                int num = rnd.Next(idArr.Length);
 
-            string query = "Select * From unitTable Where Id = " + idArr[num];
-
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
-            {
-                DataTable unitTable = new DataTable();
-                adapter.Fill(unitTable);
-
-                rollListBox.DisplayMember = "Name";
-                rollListBox.ValueMember = "Id";
-                rollListBox.DataSource = unitTable;
-
-                foreach (DataRow row in unitTable.Rows)
-                {
-                    history = (row["Name"].ToString())+"\r\n"+history;
-                }
-            }
-
-            populateRollUnitInfo();
-
-            if (rollDelRadioBtn.Checked)
-            {
-                query = "Delete From unitTable Where Id = @Id";
+                string query = "Select * From unitTable Where Id = " + idArr[num];
 
                 using (connection = new SqlConnection(connectionString))
-                using (command = new SqlCommand(query, connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
                 {
-                    connection.Open();
-                    command.Parameters.AddWithValue("@Id", idArr[num]);
-                    command.ExecuteNonQuery();
-                }
-                populateUnitList();
-            }
+                    DataTable unitTable = new DataTable();
+                    adapter.Fill(unitTable);
 
-            historyTxtBox.Text = history;
+                    rollListBox.DisplayMember = "Name";
+                    rollListBox.ValueMember = "Id";
+                    rollListBox.DataSource = unitTable;
+
+                    foreach (DataRow row in unitTable.Rows)
+                    {
+                        history = (row["Name"].ToString()) + "\r\n" + history;
+                    }
+                }
+
+                populateRollUnitInfo();
+
+                if (rollDelRadioBtn.Checked)
+                {
+                    query = "Delete From unitTable Where Id = @Id";
+
+                    using (connection = new SqlConnection(connectionString))
+                    using (command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        command.Parameters.AddWithValue("@Id", idArr[num]);
+                        command.ExecuteNonQuery();
+                    }
+                    populateUnitList();
+                }
+
+                historyTxtBox.Text = history;
+            }
+            catch
+            {
+                MessageBox.Show("Need some items in database before rolling");
+            }
         }
 
         private void rollListBox_SelectedIndexChanged(object sender, EventArgs e)
